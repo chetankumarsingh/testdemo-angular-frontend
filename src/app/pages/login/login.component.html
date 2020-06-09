@@ -1,0 +1,62 @@
+<div class="card card-block login-card">
+  <h3 class="form-label">Welcome Back</h3>
+  <span class="form-label">sign in to continue</span>
+  <div class="form-group">
+
+    <div class="input-group">
+      <span class="input-group-addon addon-left" id="username">
+        <i class="fa fa-user fa-fw"></i>
+      </span>
+      <input class="form-control with-primary-addon" placeholder="Email ID" type="email" name="EmailID"
+      id="EmailID"
+      required minlength="2">
+    </div>
+
+    <div class="input-group">
+      <span class="input-group-addon addon-left" id="password">
+        <i class="fa fa-lock fa-fw"></i>
+      </span>
+      <input class="form-control with-primary-addon" placeholder="Password" type="password" id="Passwords" required minlength="6">
+    </div>
+
+
+    <button class="btn btn-lg btn-primary" (click)="login()">Login</button>
+    <a data-toggle="modal" data-target="#myModalImg" class="btn btn-link">Create Department Now. →</a> 
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="myModalImg">
+  <div class="modal-dialog">
+    <div class="modal-content" style="    margin-top: 24%;">
+
+      <div class="card card-block login-card" style="margin-top:20px;">
+        <h3 class="form-label">Create Department</h3>
+     
+      
+        <div class="form-group">
+      
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="DeptName" type="text" id="DeptName" required minlength="2">
+          </div>
+      
+
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="Email ID" type="email" id="emailid"  required minlength="2">
+          </div>
+       
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="Password" type="password" id="passwordd" required minlength="6">
+          </div>
+
+          <button class="btn btn-lg btn-primary" (click)="RegisterBtn()">Register</button>
+
+        </div>
+      </div>
+     <div class="modal-body" style="padding:0px !important;">
+      </div>  
+      <button type="button" id="close-modal1" data-dismiss="modal" style="display: none">Close</button>
+    </div>
+  </div>
+</div>

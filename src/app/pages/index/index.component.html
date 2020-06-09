@@ -1,0 +1,557 @@
+<div class="row">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+ 
+    <div class="row" *ngIf="managementType=='department'">
+        <div class="col-12 col-md-6 offset-md-3"></div>
+        <div class="col-12 col-md-2 offset-md-3"></div>
+        <div class="col-12 col-md-2 offset-md-3"></div>
+        <div class="col-12 col-md-2 offset-md-3">
+          <a data-toggle="modal" data-target="#myModalImg" (click)="showModalImg()" class="viewmap">
+            <button class="tip-ico tip-ico-primary">Add Manager</button>
+          </a>
+        </div>
+    </div>
+
+
+  <div class="row" *ngIf="managementType=='ManagerA'" style="margin-bottom: 20px;">
+      <div class="col-12 col-md-6 offset-md-3"></div> 
+      <div class="col-12 col-md-2 offset-md-3">
+        <a data-toggle="modal" data-target="#myModalTester" class="viewmap">
+          <button class="tip-ico tip-ico-primary">Add Tester</button>
+        </a>
+      </div>
+      <div class="col-12 col-md-2 offset-md-3">
+        <a data-toggle="modal" data-target="#myModalDeveloper" class="viewmap">
+          <button class="tip-ico tip-ico-primary">Add Developer</button>
+        </a>
+      </div>
+      <div class="col-12 col-md-2 offset-md-3">
+        <a data-toggle="modal" data-target="#myModalManager" class="viewmap">
+          <button class="tip-ico tip-ico-primary">Add Manager</button>
+        </a>
+      </div>
+  </div>
+
+
+    <div class="row">
+      <div class="col-12 col-md-3 offset-md-3"></div>
+      <div class="col-12 col-md-6 offset-md-3">
+        <card cardTitle="INFO">
+        <h2 *ngIf="managementType=='department'" style="text-align: center;">Department Info</h2>
+        <h2 *ngIf="managementType=='ManagerA'" style="text-align: center;">Manager Info</h2>
+        </card>
+    </div>
+    <div class="col-12 col-md-3 offset-md-3"></div>
+    </div>
+ 
+
+<div *ngIf="managementType=='department'">
+
+  <div class="col-md-3 animated fadeIn">
+    <!-- <div class="card card-block tip-card">
+      <div class="tip-msg">
+        <h3>Developers</h3>
+        <span>{{ TesterData.length }}</span>
+      </div>
+      <button class="tip-ico tip-ico-primary">
+        <i class="fa fa-users fa-fw"></i>
+      </button>
+    </div> -->
+  </div> 
+  
+  <div class="col-md-3 animated fadeIn">
+    <!-- <div class="card card-block tip-card">
+      <div class="tip-msg">
+        <h3>QA Testers</h3>
+        <span>{{ TesterData.length }}</span>
+      </div>
+      <button class="tip-ico tip-ico-info">
+        <i class="fa fa-user-circle fa-fw"></i>
+      </button>
+    </div> -->
+  </div>
+  <div class="col-md-3 animated fadeIn">
+    <div class="card card-block tip-card">
+      <div class="tip-msg">
+        <h3>Managers</h3>
+        <span>{{ default_data.length }}</span>
+      </div>
+      <button class="tip-ico tip-ico-success">
+        <i class="fa fa-user-circle-o fa-fw"></i>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-3 animated fadeIn">
+    <div class="card card-block tip-card">
+      <div class="tip-msg">
+        <h3>Total Amount</h3>
+        <span>{{ DeptAmtLimit }}</span>
+      </div>
+      <button class="tip-ico tip-ico-danger">
+        <i class="fa fa-usd fa-fw"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="managementType=='ManagerA'">
+
+  <div class="col-md-3 animated fadeIn">
+    <div class="card card-block tip-card">
+      <div class="tip-msg">
+        <h3>Developers</h3> 
+        <span>{{ DeveloperData.length }}</span>
+      </div>
+      <button class="tip-ico tip-ico-primary">
+        <i class="fa fa-users fa-fw"></i>
+      </button>
+    </div>
+  </div> 
+  
+  <div class="col-md-3 animated fadeIn">
+    <div class="card card-block tip-card">
+      <div class="tip-msg">
+        <h3>QA Testers</h3>
+        <span>{{ TesterData.length }}</span>
+      </div>
+      <button class="tip-ico tip-ico-info">
+        <i class="fa fa-user-circle fa-fw"></i>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-3 animated fadeIn">
+    <div class="card card-block tip-card">
+      <div class="tip-msg">
+        <h3>Managers</h3>
+        <span>{{ ManagerAData.length }}</span>
+      </div>
+      <button class="tip-ico tip-ico-success">
+        <i class="fa fa-user-circle-o fa-fw"></i>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-3 animated fadeIn">
+    <div class="card card-block tip-card">
+      <div class="tip-msg">
+        <h3>Total Amount</h3>
+        <span>{{ ManagerDeptAmtLimit }}</span>
+      </div>
+      <button class="tip-ico tip-ico-danger">
+        <i class="fa fa-usd fa-fw"></i>
+      </button>
+    </div>
+  </div>
+</div>
+ 
+
+
+<div class="row" *ngIf="managementType=='department'">
+  <div class="col-md-12">
+  <card cardTitle="Manager"> 
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S no.</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email ID</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of default_data;let index = index">
+          <td>{{index+1}}</td>
+          <td>{{item.firstname}}</td>
+          <td>
+           <p>{{item.lastname}}</p>
+          </td>
+          <td>{{item.email}}</td>
+          <td>{{item.DeptAmtLimit}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </card>
+</div>
+</div>
+
+
+
+<div class="modal fade" id="myModalImg">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="card card-block login-card" style="margin-top:20px;">
+        <h3 class="form-label">Add Manager</h3>
+     
+      
+        <div class="form-group">
+      
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="First Name" type="text" id="FirstName" required minlength="2">
+          </div>
+      
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="Last Name" type="text" id="LastName" required minlength="6">
+          </div>
+
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="Email ID" type="email" id="EmailID"  required minlength="2">
+          </div>
+      
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="Password" type="password" id="Passwords" required minlength="6">
+          </div>
+
+          <button class="btn btn-lg btn-primary" (click)="AddManagersBtn()">Login</button>
+
+        </div>
+      </div>
+     <div class="modal-body" style="padding:0px !important;">
+      </div>  
+      <button type="button" id="close-modal1" data-dismiss="modal" style="display: none">Close</button>
+    </div>
+  </div>
+</div>
+ 
+
+<!-- Manager A Part -->
+
+<div *ngIf="managementType=='ManagerA'">
+
+<div class="row" >
+  <div class="col-md-12">
+  <card cardTitle="Manager"> 
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S no.</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email ID</th>
+        </tr>
+      </thead> 
+      <tbody>
+        <tr *ngFor="let item of ManagerAData;let index = index">
+          <td>{{index+1}}</td>
+          <td>{{item.firstname}}</td>
+          <td>
+           <p>{{item.lastname}}</p>
+          </td>
+          <td>{{item.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </card>
+</div>
+</div>
+
+
+<div class="row" >
+  <div class="col-md-12">
+  <card cardTitle="Developer"> 
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S no.</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of DeveloperData;let index = index">
+          <td>{{index+1}}</td>
+          <td>{{item.firstname}}</td>
+          <td>
+           <p>{{item.lastname}}</p>
+          </td>
+          <td>{{item.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </card>
+</div>
+</div>
+
+<div class="row" >
+  <div class="col-md-12">
+  <card cardTitle="QA Tester"> 
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S no.</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of TesterData;let index = index">
+          <td>{{index+1}}</td>
+          <td>{{item.firstname}}</td>
+          <td>
+           <p>{{item.lastname}}</p>
+          </td>
+          <td>{{item.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </card>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="modal fade" id="myModalManager">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="card card-block login-card" style="margin-top:20px;">
+        <h3 class="form-label">Add Manager</h3>
+      
+        <div class="form-group">
+      
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="First Name" type="text" id="FirstName1" required minlength="2">
+          </div>
+      
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="Last Name" type="text" id="LastName1" required minlength="6">
+          </div>
+
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="Email ID" type="email" id="EmailID1"  required minlength="2">
+          </div>
+
+          <button class="btn btn-lg btn-primary" (click)="ManagerInManagerBtn()">Submit</button>
+
+        </div>
+      </div>
+     <div class="modal-body" style="padding:0px !important;">
+      </div>  
+      <button type="button" id="close-modal2" data-dismiss="modal" style="display: none">Close</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="myModalDeveloper">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="card card-block login-card" style="margin-top:20px;">
+        <h3 class="form-label">Add Developer</h3>
+      
+        <div class="form-group">
+      
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="First Name" type="text" id="FirstName2" required minlength="2">
+          </div>
+      
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="Last Name" type="text" id="LastName2" required minlength="6">
+          </div>
+
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="Email ID" type="email" id="EmailID2"  required minlength="2">
+          </div>
+
+          <button class="btn btn-lg btn-primary" (click)="ManagerInDevBtn()">Submit</button>
+
+        </div>
+      </div>
+     <div class="modal-body" style="padding:0px !important;">
+      </div>  
+      <button type="button" id="close-modal3" data-dismiss="modal" style="display: none">Close</button>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="myModalTester">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="card card-block login-card" style="margin-top:20px;">
+        <h3 class="form-label">Add QA Tester</h3>
+      
+        <div class="form-group">
+      
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="First Name" type="text" id="FirstName3" required minlength="2">
+          </div>
+      
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="Last Name" type="text" id="LastName3" required minlength="6">
+          </div>
+
+          <div class="input-group" style="margin-bottom:16px;">
+            <input class="form-control with-primary-addon" placeholder="Email ID" type="email" id="EmailID3"  required minlength="2">
+          </div>
+
+          <button class="btn btn-lg btn-primary" (click)="ManagerInQABtn()">Submit</button>
+
+        </div>
+      </div>
+     <div class="modal-body" style="padding:0px !important;">
+      </div>  
+      <button type="button" id="close-modal4" data-dismiss="modal" style="display: none">Close</button>
+    </div>
+  </div>
+</div>
+
+ 
+
+
+
+  <!-- <div class="col-md-8">
+    <card cardTitle='Bar Chart' isCollapse="true">
+      <div echarts [options]="AnimationBarOption" [loading]="showloading" theme="dark"></div>
+    </card>
+  </div> -->
+
+
+  <!-- <div class="col-md-4">
+    <card cardTitle="Todo List" isCollapse="true">
+      <du-todolist></du-todolist>
+    </card>
+  </div>
+  <div class="col-md-6">
+    <card>
+      <profile></profile>
+    </card>
+  </div>
+  <div class="col-md-6">
+    <card>
+      <weather></weather>
+    </card>
+  </div>  -->
+  
+  <!-- <p>ram is good</p>-->
+
+
+
+  <!-- <div class="form">
+    <div class="form-well-with-header">
+    <div class="form-well-header"> 
+      <h2 class="header-notify"> Send Notification </h2>
+      <div class="pull-right">
+      </div>
+    </div>
+
+
+
+      <div class="col-md-12">
+        <label for="validationTooltip01">Title</label>
+
+         <div class="search-btn-input">    
+           <i  class="fa fa-header fa-fw"></i>
+         </div>
+        <input type="text" class="form-control" id="search" placeholder=" Title"  (keyup)="onKeyTitle($event)">
+    </div>
+     
+
+
+      <div class="col-md-12 margintop">
+        <label for="validationTooltip01">Location</label>
+
+        <div class="search-btn-input">    
+           <i  class="fa fa-map-marker fa-fw"></i>
+         </div>
+        <input type="text" class="form-control" id="search" placeholder=" Location" (keyup)="onKeyLocation($event)">  
+      </div>
+
+         <div class="col-md-12 margintop">
+        <label for="validationTooltip01">Text</label>
+
+        <div class="search-btn-input">    
+           <i  class="fa fa-info fa-fw"></i>
+         </div>
+        <textarea class="form-control textarea1" rows="5" id="comment" placeholder="Message" (keyup)="onKeyMessage($event)"></textarea>
+      </div>
+
+  
+
+
+     
+
+<button type="button" class="btn btn-primary sendbtn">SEND</button>
+
+</div>
+</div> 
+</div> 
+
+
+<div class="col-md-6">
+<div class="smartphone">
+<div class="content">
+
+
+<div class="card cardmiddle" >
+  <div class="card-body">
+  
+    <div class="sc-hmzhuo fBbNab">
+    <div class="sc-gGBfsJ eBrvpa">
+    <div class="sc-jnlKLf eCpFow">
+    <div class="sc-frDJqD bueuKL">{{ TitleMsg }}</div>
+     <div class="sc-kvZOFW jYavjY">{{ LocationMsg }}</div>
+    <div class="sc-kvZOFW jYavjY">{{ MessageMsg }}</div>
+    
+    </div></div>
+    </div>
+
+
+  </div>
+</div>
+  
+
+</div>
+</div>
+</div>
+
+
+
+ 
+
+
+     <div class="container">
+      <div class="row py-5 justify-content-center">
+       <div class="col-md-8">
+        <h1 class="text-center py-4">Export Data to Excel Sheet in Angular 8</h1>
+        <div class="col-md-12 table-responsive" #epltable>
+         <div style="padding-bottom: 10px;padding-top: 10px;">
+          <div class="row">
+           <div class="col-sm-12">
+            <button (click)="exportToExcel()" class="btn btn-success">Export To Excel</button> 
+           </div>
+          </div>
+         </div>
+         <table class="table table-bordered">
+          <thead class="thead-dark">
+          <tr>
+           <th>First Name</th>
+           <th>Full Address</th>
+           <th>Last Name</th>
+           <th>Telephone Number</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr *ngFor="let club of clubs">
+           <td>{{club.first_name}}</td>
+           <td>{{club.full_address}}</td>
+           <td>{{club.last_name}}</td>
+           <td>{{club.telephone_number}}</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div> -->
